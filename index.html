@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Task Management System</title>
+    <meta name="description" content="Instructor Task Management System" />
+    <meta name="author" content="TaskMS" />
+    <meta name="theme-color" content="#6366f1" />
+
+    <link rel="manifest" href="/manifest.json" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-title" content="TaskMS" />
+    <link rel="apple-touch-icon" href="/icon-192.png" />
+
+    <meta property="og:title" content="Task Management System" />
+    <meta property="og:description" content="Instructor Task Management System" />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="https://lovable.dev/opengraph-image-p98pqg.png" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@TaskMS" />
+    <meta name="twitter:image" content="https://lovable.dev/opengraph-image-p98pqg.png" />
+  </head>
+
+  <body>
+    <script>
+      (function() {
+        try {
+          const storageKey = 'creativpay-theme';
+          const theme = localStorage.getItem(storageKey);
+          const root = document.documentElement;
+
+          root.className = root.className.replace(/\b(light|dark)\b/g, '').trim();
+          
+          let resolvedTheme;
+          if (theme === 'dark') {
+            resolvedTheme = 'dark';
+          } else if (theme === 'light') {
+            resolvedTheme = 'light';
+          } else {
+
+            resolvedTheme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+          }
+          
+          root.classList.add(resolvedTheme);
+          root.setAttribute('data-theme', resolvedTheme);
+        } catch (e) {
+         
+          document.documentElement.classList.add('light');
+        }
+      })();
+    </script>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+    <script>
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+          navigator.serviceWorker.register('/sw.js')
+            .then(reg => console.log('SW registered'))
+            .catch(err => console.log('SW registration failed'));
+        });
+      }
+    </script>
+  </body>
+</html>
